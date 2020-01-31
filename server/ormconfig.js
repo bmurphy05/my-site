@@ -1,13 +1,17 @@
 module.exports = [
   {
     name: "development",
-    type: "sqlite",
-    database: "database.sqlite",
-    synchronize: true,
-    logging: true,
-    entities: ["src/entity/**/*.ts"],
-    migrations: ["src/migration/**/*.ts"],
-    subscribers: ["src/subscriber/**/*.ts"],
+    type: "postgres",
+    host: "localhost",
+    port: 5433,
+    username: "postgres",
+    password: "postgres",
+    database: "my-site-dev",
+    synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
+    logging: false,
+    entities: ["src/entity/**/*.js"],
+    migrations: ["src/migration/**/*.js"],
+    subscribers: ["src/subscriber/**/*.js"],
     cli: {
       entitiesDir: "src/entity",
       migrationsDir: "src/migration",
