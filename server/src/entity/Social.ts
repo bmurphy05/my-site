@@ -3,26 +3,17 @@ import { ObjectType, Field, ID } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class Job extends BaseEntity {
+export class Social extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  jobTitle: string;
+  linkedIn: string;
 
   @Column()
-  location: string;
-
-  @Column()
-  startDate: string;
-  
-  @Column()
-  endDate: string;
-  
-  @Column()
-  responsibilities: string;
+  github: string;
 
   @Column()
   user: number;

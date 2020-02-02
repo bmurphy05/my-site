@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-import { ObjectType, Field, ID, Root } from "type-graphql";
+import { ObjectType, Field, ID } from "type-graphql";
 
 @ObjectType()
 @Entity()
@@ -24,15 +24,11 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Field()
-  @Column("bool", { default: false })
-  confirmed: boolean;
+  @Column()
+  underGraduate: string;
 
   @Column()
-  undergraduate: string;
-
-  @Column()
-  postgraduate: string;
+  postGraduate: string;
 
   @Column()
   summary: string;
@@ -45,8 +41,5 @@ export class User extends BaseEntity {
 
   @Column()
   github: string;
-
-  @Column()
-  user: string;
 
 }

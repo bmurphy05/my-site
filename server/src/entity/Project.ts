@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-import { ObjectType, Field, ID, Root } from "type-graphql";
+import { ObjectType, Field, ID } from "type-graphql";
 
 @ObjectType()
 @Entity()
@@ -26,8 +26,8 @@ export class Project extends BaseEntity {
 
   @Column()
   github: string;
-  
+
   @Column()
   user: number;
-
+  
 }
