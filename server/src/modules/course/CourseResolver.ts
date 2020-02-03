@@ -4,8 +4,8 @@ import { Course } from "src/entity/Course";
 @Resolver()
 export class CourseResolver {
   @Mutation(() => Course)
-  async addCourse(@Arg("input") courseTitle: string, semester: string, year: string, user: number) {
-    return Course.create({ courseTitle, semester, year, user }).save();
+  async addCourse(@Arg("input") title: string, semester: string, year: string, user: number) {
+    return Course.create({ title, semester, year, user }).save();
   }
 
   @Mutation(() => Boolean)
@@ -16,6 +16,11 @@ export class CourseResolver {
 
   @Query(() => [Course])
   async courses() {
+    return Course.find();
+  }
+
+  @Query(() => [Course])
+  async course() {
     return Course.find();
   }
 }

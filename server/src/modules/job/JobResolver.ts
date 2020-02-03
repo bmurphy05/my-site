@@ -4,8 +4,8 @@ import { Job } from "src/entity/Job";
 @Resolver()
 export class JobResolver {
   @Mutation(() => Job)
-  async addJob(@Arg("input") jobTitle: string, location: string, startDate: string, endDate: string, responsibilities: string, user: number) {
-    return Job.create({ jobTitle, location, startDate, endDate, responsibilities, user }).save();
+  async addJob(@Arg("input") title: string, location: string, startDate: string, endDate: string, responsibilities: string, user: number) {
+    return Job.create({ title, location, startDate, endDate, responsibilities, user }).save();
   }
 
   @Mutation(() => Boolean)
@@ -16,6 +16,11 @@ export class JobResolver {
 
   @Query(() => [Job])
   async jobs() {
+    return Job.find();
+  }
+
+  @Query(() => [Job])
+  async job() {
     return Job.find();
   }
 }

@@ -10,7 +10,7 @@ export class Skill extends BaseEntity {
 
   @Field()
   @Column()
-  skill: string;
+  title: string;
 
   @Column()
   type: string;

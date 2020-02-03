@@ -4,8 +4,8 @@ import { Skill } from "src/entity/Skill";
 @Resolver()
 export class SkillResolver {
   @Mutation(() => Skill)
-  async addSkill(@Arg("input") skill: string, type: string, user: number) {
-    return Skill.create({ skill, type, user }).save();
+  async addSkill(@Arg("input") title: string, type: string, user: number) {
+    return Skill.create({ title, type, user }).save();
   }
 
 
@@ -17,6 +17,11 @@ export class SkillResolver {
 
   @Query(() => [Skill])
   async skills() {
+    return Skill.find();
+  }
+
+  @Query(() => [Skill])
+  async skill() {
     return Skill.find();
   }
 }

@@ -4,8 +4,8 @@ import { Project } from "src/entity/Project";
 @Resolver()
 export class ProjectResolver {
   @Mutation(() => Project)
-  async addProject(@Arg("input") projectTitle: string, description: string, startDate: string, endDate: string, link: string, github: string, user: number) {
-    return Project.create({ projectTitle, description, startDate, endDate, link, github, user }).save();
+  async addProject(@Arg("input") title: string, description: string, startDate: string, endDate: string, link: string, github: string, user: number) {
+    return Project.create({ title, description, startDate, endDate, link, github, user }).save();
   }
 
  
@@ -17,6 +17,11 @@ export class ProjectResolver {
 
   @Query(() => [Project])
   async projects() {
+    return Project.find();
+  }
+
+  @Query(() => [Project])
+  async project() {
     return Project.find();
   }
 }

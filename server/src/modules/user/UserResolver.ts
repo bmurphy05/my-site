@@ -4,8 +4,8 @@ import { User } from "src/entity/User";
 @Resolver()
 export class UserResolver {
   @Mutation(() => User)
-  async addUser(@Arg("input") firstName: string, lastName: string, email: string, password: string, underGraduate: string, postGraduate: string, summary: string, image: File, linkedIn: string, github: string ) {
-    return User.create({ firstName, lastName, email, password, underGraduate, postGraduate, summary, image, linkedIn, github }).save();
+  async addUser(@Arg("input") firstName: string, lastName: string, email: string, password: string, underGraduate: string, postGraduate: string, summary: string, image: File ) {
+    return User.create({ firstName, lastName, email, password, underGraduate, postGraduate, summary, image }).save();
   }
 
   @Mutation(() => Boolean)
@@ -13,8 +13,14 @@ export class UserResolver {
     await User.delete({ id: id });
     return true;
   }
+
   @Query(() => [User])
   async users() {
+    return User.find();
+  }
+
+  @Query(() => [User])
+  async user() {
     return User.find();
   }
 }

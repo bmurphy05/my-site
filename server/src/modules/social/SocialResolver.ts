@@ -19,4 +19,9 @@ export class SocialResolver {
   async socials() {
     return Social.find();
   }
+
+  @Query(() => [Social])
+  async social() {
+    return Social.find();
+  }
 }

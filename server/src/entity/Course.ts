@@ -10,7 +10,7 @@ export class Course extends BaseEntity {
 
   @Field()
   @Column()
-  courseTitle: string;
+  title: string;
 
   @Column()
   semester: string;

@@ -36,10 +36,4 @@ export class User extends BaseEntity {
   @Column()
   image: File;
 
-  @Column()
-  linkedIn: string;
-
-  @Column()
-  github: string;
-
 }

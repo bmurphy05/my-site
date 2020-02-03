@@ -10,7 +10,7 @@ export class Job extends BaseEntity {
 
   @Field()
   @Column()
-  jobTitle: string;
+  title: string;
 
   @Column()
   location: string;

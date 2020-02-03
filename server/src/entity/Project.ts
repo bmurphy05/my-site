@@ -10,7 +10,7 @@ export class Project extends BaseEntity {
 
   @Field()
   @Column()
-  projectTitle: string;
+  title: string;
 
   @Column()
   description: string;
