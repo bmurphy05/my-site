@@ -12,12 +12,15 @@ export class Course extends BaseEntity {
   @Column()
   title: string;
 
+  @Field()
   @Column()
   semester: string;
 
+  @Field()
   @Column()
-  year: string;
+  year: number;
 
+  @Field()
   @Column()
   user: number;
 }

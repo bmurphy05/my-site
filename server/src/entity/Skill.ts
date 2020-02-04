@@ -12,9 +12,11 @@ export class Skill extends BaseEntity {
   @Column()
   title: string;
 
+  @Field()
   @Column()
   type: string;
 
+  @Field()
   @Column()
   user: number;
   

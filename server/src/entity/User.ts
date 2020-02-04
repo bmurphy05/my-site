@@ -24,16 +24,20 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Field()
   @Column()
   underGraduate: string;
 
+  @Field()
   @Column()
   postGraduate: string;
 
+  @Field()
   @Column()
   summary: string;
 
+  @Field()
   @Column()
-  image: File;
+  image: string;
 
 }

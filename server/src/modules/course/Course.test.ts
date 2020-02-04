@@ -1,4 +1,4 @@
-  import { Connection } from "typeorm";
+import { Connection } from "typeorm";
 import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
@@ -30,10 +30,10 @@ mutation Course($data: CourseInput!) {
 describe("Course", () => {
   it("create course", async () => {
     const course = {
-      title: faker.name.title(),
-      semester: faker.name.semester(),
-      year: faker.date.year(),
-      user: faker.name.user()
+      title: "Cloud Computing",
+      semester: "spring",
+      year: 2016,
+      user: 1
     };
 
     const response = await gCall({

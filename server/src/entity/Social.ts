@@ -12,9 +12,11 @@ export class Social extends BaseEntity {
   @Column()
   linkedIn: string;
 
+  @Field()
   @Column()
   github: string;
 
+  @Field()
   @Column()
   user: number;
 

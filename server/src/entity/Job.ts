@@ -12,18 +12,23 @@ export class Job extends BaseEntity {
   @Column()
   title: string;
 
+  @Field()
   @Column()
   location: string;
 
+  @Field()
   @Column()
   startDate: string;
-  
+ 
+  @Field()
   @Column()
   endDate: string;
   
+  @Field()
   @Column()
   responsibilities: string;
 
+  @Field()
   @Column()
   user: number;
 

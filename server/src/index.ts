@@ -4,12 +4,12 @@ import { createConnection, getConnectionOptions } from "typeorm";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { UserResolver } from "./resolvers/UserResolver";
-import { CourseResolver } from "./resolvers/CourseResolver";
-import { JobResolver } from "./resolvers/JobResolver";
-import { SkillResolver } from "./resolvers/SkillResolver";
-import { SocialResolver } from "./resolvers/SocialResolver";
-import { ProjectResolver } from "./resolvers/ProjectResolver";
+import { UserResolver } from "./modules/user/UserResolver";
+import { CourseResolver } from "./modules/course/CourseResolver";
+import { JobResolver } from "./modules/job/JobResolver";
+import { SkillResolver } from "./modules/skill/SkillResolver";
+import { SocialResolver } from "./modules/social/SocialResolver";
+import { ProjectResolver } from "./modules/project/ProjectResolver";
 
 (async () => {
   const app = express();
