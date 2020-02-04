@@ -1,13 +1,23 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { Social } from "src/entity/Social";
+import { Social } from "../../entity/Social";
+import { SocialInput } from "./SocialInput";
 
 @Resolver()
 export class SocialResolver {
   @Mutation(() => Social)
-  async addSocial(@Arg("input") linkedIn: string, github: string, user: number) {
-    return Social.create({ linkedIn, github, user }).save();
-  }
-  
+  async addSocial(@Arg("input")
+  {
+    linkedIn,
+    github,
+    user
+  }:SocialInput
+  ){
+    return Social.create({ 
+      linkedIn, 
+      github, 
+      user 
+    }).save();
+  } 
  
   @Mutation(() => Boolean)
   async deleteSocial(@Arg("input", () => Int) id: number) {

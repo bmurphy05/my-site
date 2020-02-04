@@ -9,15 +9,15 @@ export class Skill extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
+  @Column("text")
   title: string;
 
   @Field()
-  @Column()
+  @Column("text")
   type: string;
 
   @Field()
-  @Column()
+  @Column("int")
   user: number;
   
 }

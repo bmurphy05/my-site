@@ -1,13 +1,26 @@
-import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { Course } from "src/entity/Course";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Course } from "../../entity/Course";
+import { CourseInput } from "./CourseInput";
 
 @Resolver()
 export class CourseResolver {
   @Mutation(() => Course)
-  async addCourse(@Arg("input") title: string, semester: string, year: string, user: number) {
-    return Course.create({ title, semester, year, user }).save();
+  async addCourse(@Arg("input") 
+  {
+    semester, 
+    title, 
+    user, 
+    year
+  }: CourseInput
+  ){
+    return Course.create({ 
+      title, 
+      semester, 
+      year, 
+      user 
+    }).save();
   }
-
+  
   @Mutation(() => Boolean)
   async deleteCourse(@Arg("input") id: number)  {
     await Course.delete({ id });

@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
 import { gCall } from "../../test-utils/gCall";
@@ -19,10 +18,10 @@ mutation Course($data: CourseInput!) {
     data: $data
   ) {
     id
-    title
     semester
-    year
+    title
     user
+    year
   }
 }
 `;
@@ -46,19 +45,19 @@ describe("Course", () => {
     expect(response).toMatchObject({
       data: {
         course: {
-          title: course.title,
           semester: course.semester,
+          title: course.title,
+          user: course.user,
           year: course.year,
-          user: course.user
         }
       }
     });
 
     const dbUser = await Course.findOne({ where: { title: course.title } });
     expect(dbUser).toBeDefined();
-    expect(dbUser!.title).toBe(course.title);
     expect(dbUser!.semester).toBe(course.semester);
-    expect(dbUser!.year).toBe(course.year);
+    expect(dbUser!.title).toBe(course.title);
     expect(dbUser!.user).toBe(course.user);
+    expect(dbUser!.year).toBe(course.year);
   });
 });

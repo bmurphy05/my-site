@@ -19,8 +19,8 @@ mutation Social($data: SocialInput!) {
     data: $data
   ) {
     id
-    github
     linkedIn
+    github
     user
   }
 }
@@ -29,8 +29,8 @@ mutation Social($data: SocialInput!) {
 describe("Social", () => {
   it("create social", async () => {
     const social = {
-      github: faker.name.github(),
       linkedIn: faker.date.linkedIn(),
+      github: faker.name.github(),
       user: faker.name.user()
     };
 
@@ -44,17 +44,17 @@ describe("Social", () => {
     expect(response).toMatchObject({
       data: {
         project: {
-          github: social.github,
           linkedIn: social.linkedIn,
+          github: social.github,
           user: social.user
         }
       }
     });
 
-    const dbUser = await Social.findOne({ where: { github: social.github, linkedin: social.linkedIn } });
+    const dbUser = await Social.findOne({ where: { linkedin: social.linkedIn , github: social.github,} });
     expect(dbUser).toBeDefined();
-    expect(dbUser!.github).toBe(social.github);
     expect(dbUser!.linkedIn).toBe(social.linkedIn);
+    expect(dbUser!.github).toBe(social.github);
     expect(dbUser!.user).toBe(social.user);
   });
 });

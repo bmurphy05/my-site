@@ -9,15 +9,15 @@ export class Social extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
+  @Column("text")
   linkedIn: string;
 
   @Field()
-  @Column()
+  @Column("text")
   github: string;
 
   @Field()
-  @Column()
+  @Column("int")
   user: number;
 
 }

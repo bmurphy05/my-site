@@ -9,31 +9,31 @@ export class Project extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
+  @Column("text")
   title: string;
 
   @Field()
-  @Column()
-  description: string;
-
-  @Field()
-  @Column()
+  @Column("text")
   startDate: string;
   
   @Field()
-  @Column()
+  @Column("text")
   endDate: string;
+
+  @Field()
+  @Column("text")
+  description: string;
   
   @Field()
-  @Column()
+  @Column("text")
   link: string;
 
   @Field()
-  @Column()
+  @Column("text")
   github: string;
 
   @Field()
-  @Column()
+  @Column("int")
   user: number;
   
 }

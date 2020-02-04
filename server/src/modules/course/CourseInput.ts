@@ -7,13 +7,13 @@ export class CourseInput {
   semester: string;
 
   @Field()
-  year: string;
-
-  @Field()
   @IsCourseAlreadyExist({ message: "course already exists" })
-  course: string;
+  title: string;
 
   @Field()
   user: number;
+
+  @Field()
+  year: string;
   
 }

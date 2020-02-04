@@ -9,18 +9,18 @@ export class Course extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
-  title: string;
-
-  @Field()
-  @Column()
+  @Column("text")
   semester: string;
 
   @Field()
-  @Column()
-  year: number;
+  @Column("text")
+  title: string;
 
   @Field()
-  @Column()
+  @Column("int")
   user: number;
+
+  @Field()
+  @Column("text")
+  year: string;
 }

@@ -1,6 +1,5 @@
 import { Field, InputType } from "type-graphql";
 import { IsEmailAlreadyExist } from "./isEmailAlreadyExist";
-import { File } from "@babel/types";
 
 @InputType()
 export class UserInput {
@@ -27,5 +26,5 @@ export class UserInput {
   summary: string;
 
   @Field()
-  image: File;
+  image: string;
 }

@@ -9,11 +9,11 @@ export class User extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
+  @Column("text")
   firstName: string;
 
   @Field()
-  @Column()
+  @Column("text")
   lastName: string;
 
   @Field()
@@ -21,23 +21,23 @@ export class User extends BaseEntity {
   email: string;
 
   @Field()
-  @Column()
+  @Column("text")
   password: string;
 
   @Field()
-  @Column()
+  @Column("text")
   underGraduate: string;
 
   @Field()
-  @Column()
+  @Column("text")
   postGraduate: string;
 
   @Field()
-  @Column()
+  @Column("text")
   summary: string;
 
   @Field()
-  @Column()
+  @Column("text")
   image: string;
 
 }

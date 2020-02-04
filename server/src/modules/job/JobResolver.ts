@@ -1,12 +1,29 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { Job } from "src/entity/Job";
+import { Job } from "../../entity/Job";
+import { JobInput } from "./JobInput";
 
 @Resolver()
 export class JobResolver {
   @Mutation(() => Job)
-  async addJob(@Arg("input") title: string, location: string, startDate: string, endDate: string, responsibilities: string, user: number) {
-    return Job.create({ title, location, startDate, endDate, responsibilities, user }).save();
-  }
+  async addJob(@Arg("input")
+  {
+    title,
+    location, 
+    startDate, 
+    endDate, 
+    responsibilities, 
+    user
+  }:JobInput
+  ) {
+    return Job.create({ 
+      title, 
+      location, 
+      startDate, 
+      endDate, 
+      responsibilities, 
+      user 
+    }).save();
+  } 
 
   @Mutation(() => Boolean)
   async deleteJob(@Arg("input", () => Int) id: number) {

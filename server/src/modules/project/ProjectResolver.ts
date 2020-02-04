@@ -1,13 +1,31 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { Project } from "src/entity/Project";
+import { Project } from "../../entity/Project";
+import { ProjectInput } from "./ProjectInput";
 
 @Resolver()
 export class ProjectResolver {
   @Mutation(() => Project)
-  async addProject(@Arg("input") title: string, description: string, startDate: string, endDate: string, link: string, github: string, user: number) {
-    return Project.create({ title, description, startDate, endDate, link, github, user }).save();
+  async addProject(@Arg("input")
+  {
+    title, 
+    description,
+    startDate,
+    endDate,
+    link,
+    github,
+    user 
+  }:ProjectInput
+  ) {
+    return Project.create({ 
+      title, 
+      startDate, 
+      endDate, 
+      description, 
+      link, 
+      github, 
+      user 
+    }).save();
   }
-
  
   @Mutation(() => Boolean)
   async deleteProject(@Arg("input", () => Int) id: number) {
