@@ -18,10 +18,10 @@ mutation Course($data: CourseInput!) {
     data: $data
   ) {
     id
-    semester
     title
-    user
+    semester
     year
+    user
   }
 }
 `;
@@ -45,18 +45,18 @@ describe("Course", () => {
     expect(response).toMatchObject({
       data: {
         course: {
-          semester: course.semester,
           title: course.title,
-          user: course.user,
+          semester: course.semester,
           year: course.year,
+          user: course.user
         }
       }
     });
 
     const dbUser = await Course.findOne({ where: { title: course.title } });
     expect(dbUser).toBeDefined();
-    expect(dbUser!.semester).toBe(course.semester);
     expect(dbUser!.title).toBe(course.title);
+    expect(dbUser!.semester).toBe(course.semester);
     expect(dbUser!.user).toBe(course.user);
     expect(dbUser!.year).toBe(course.year);
   });

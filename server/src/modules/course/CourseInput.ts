@@ -4,16 +4,17 @@ import { IsCourseAlreadyExist } from "./isCourseAlreadyExist";
 @InputType()
 export class CourseInput {
   @Field()
-  semester: string;
-
-  @Field()
   @IsCourseAlreadyExist({ message: "course already exists" })
   title: string;
 
   @Field()
-  user: number;
+  semester: string;
 
   @Field()
   year: string;
+
+  @Field()
+  user: number;
+
   
 }

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, JoinColumn } from "typeorm";
 import { ObjectType, Field, ID } from "type-graphql";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
@@ -10,17 +11,19 @@ export class Course extends BaseEntity {
 
   @Field()
   @Column("text")
+  title: string;
+
+  @Field()
+  @Column("text")
   semester: string;
 
   @Field()
   @Column("text")
-  title: string;
-
-  @Field()
-  @Column("int")
-  user: number;
-
-  @Field()
-  @Column("text")
   year: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn()
+  @Field(() => User)
+  @Column("int")
+  user!: number;
 }

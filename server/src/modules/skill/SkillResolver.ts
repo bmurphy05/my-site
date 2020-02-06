@@ -1,6 +1,7 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { Skill } from "../../entity/Skill";
 import { SkillInput } from "./SkillInput";
+import { getRepository } from "typeorm";
 
 @Resolver()
 export class SkillResolver {
@@ -27,11 +28,27 @@ export class SkillResolver {
 
   @Query(() => [Skill])
   async skills() {
-    return Skill.find();
+    return getRepository(Skill)
+    .find({
+        join: {
+            alias: "skill",
+            leftJoinAndSelect: {
+                user: "skill.user",
+            }
+        }
+    });
   }
 
   @Query(() => [Skill])
-  async skill() {
-    return Skill.find();
+  async skill(@Arg('id') id: string) {
+    return getRepository(Skill)
+    .findOne({
+        join: {
+            alias: "skill",
+            leftJoinAndSelect: {
+                user: "skill.user",
+            }
+        }, where: { id }
+    });
   }
 }

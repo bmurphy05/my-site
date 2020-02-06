@@ -1,32 +1,32 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { Project } from "../../entity/Project";
 import { ProjectInput } from "./ProjectInput";
+import { getRepository } from "typeorm";
 
 @Resolver()
 export class ProjectResolver {
   @Mutation(() => Project)
   async addProject(@Arg("input")
   {
-    title, 
+    title,
     description,
     startDate,
     endDate,
     link,
     github,
-    user 
-  }:ProjectInput
-  ) {
-    return Project.create({ 
-      title, 
-      startDate, 
-      endDate, 
-      description, 
-      link, 
-      github, 
-      user 
+    user
+  }: ProjectInput) {
+    return Project.create({
+      title,
+      startDate,
+      endDate,
+      description,
+      link,
+      github,
+      user
     }).save();
   }
- 
+
   @Mutation(() => Boolean)
   async deleteProject(@Arg("input", () => Int) id: number) {
     await Project.delete({ id: id });
@@ -35,11 +35,26 @@ export class ProjectResolver {
 
   @Query(() => [Project])
   async projects() {
-    return Project.find();
+    return getRepository(Project).find({
+      join: {
+        alias: "project",
+        leftJoinAndSelect: {
+          project: "project.user"
+        }
+      }
+    });
   }
 
-  @Query(() => [Project])
-  async project() {
-    return Project.find();
+  @Query(() => Project)
+  async project(@Arg("id") id: string) {
+    return getRepository(Project).findOne({
+      join: {
+        alias: "project",
+        leftJoinAndSelect: {
+          project: "project.user"
+        }
+      },
+      where: { id }
+    });
   }
 }

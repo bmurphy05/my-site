@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, JoinColumn, ManyToOne } from "typeorm";
 import { ObjectType, Field, ID } from "type-graphql";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
@@ -16,8 +17,10 @@ export class Skill extends BaseEntity {
   @Column("text")
   type: string;
 
-  @Field()
+  @ManyToOne(() => User)
+  @JoinColumn()
+  @Field(() => User)
   @Column("int")
-  user: number;
+  user!: number;
   
 }
