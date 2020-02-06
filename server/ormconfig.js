@@ -1,9 +1,13 @@
 module.exports = [
   {
     name: "development",
-    type: "sqlite",
-    database: "database.sqlite",
-    synchronize: true,
+    type: "postgres",
+    host: "localhost",
+    port: 5433,
+    username: "postgres",
+    password: "postgres",
+    database: "my-site-dev",
+    synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
     logging: true,
     entities: ["src/entity/**/*.ts"],
     migrations: ["src/migration/**/*.ts"],
@@ -20,9 +24,9 @@ module.exports = [
     url: process.env.DATABASE_URL,
     synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
     logging: false,
-    entities: ["dist/entity/**/*.js"],
-    migrations: ["dist/migration/**/*.js"],
-    subscribers: ["dist/subscriber/**/*.js"],
+    entities: ["dist/entity/**/*.ts"],
+    migrations: ["dist/migration/**/*.ts"],
+    subscribers: ["dist/subscriber/**/*.ts"],
     cli: {
       entitiesDir: "dist/entity",
       migrationsDir: "dist/migration",
