@@ -7,7 +7,8 @@ module.exports = [
     username: "postgres",
     password: "postgres",
     database: "my-site-dev",
-    synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
+    synchronize: false, // switch this to false once you have the initial tables created and use migrations instead
+    dropSchema: true,
     logging: true,
     entities: ["src/entity/**/*.ts"],
     migrations: ["src/migration/**/*.ts"],
