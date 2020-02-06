@@ -4,7 +4,12 @@ import { createConnection, getConnectionOptions } from "typeorm";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
+import { UserResolver } from "./modules/user/UserResolver";
+import { CourseResolver } from "./modules/course/CourseResolver";
+import { JobResolver } from "./modules/job/JobResolver";
+import { SkillResolver } from "./modules/skill/SkillResolver";
+import { SocialResolver } from "./modules/social/SocialResolver";
+import { ProjectResolver } from "./modules/project/ProjectResolver";
 
 (async () => {
   const app = express();
@@ -16,7 +21,7 @@ import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloWorldResolver],
+      resolvers: [CourseResolver, JobResolver, UserResolver, SkillResolver, SocialResolver, ProjectResolver],
       validate: true
     }),
     context: ({ req, res }) => ({ req, res })
