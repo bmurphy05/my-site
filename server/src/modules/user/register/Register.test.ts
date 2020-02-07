@@ -13,8 +13,8 @@ afterAll(async () => {
   await conn.close();
 });
 
-const userMutation = `
-mutation User($data: UserInput!) {
+const registerMutation = `
+mutation Register($data: RegisterInput!) {
   user(
     data: $data
   ) {
@@ -31,7 +31,7 @@ mutation User($data: UserInput!) {
 }
 `;
 
-describe("User", () => {
+describe("Register", () => {
   it("create user", async () => {
     const user = {
       firstName: faker.name.firstName(),
@@ -46,7 +46,7 @@ describe("User", () => {
     };
 
     const response = await gCall({
-      source: userMutation,
+      source: registerMutation,
       variableValues: {
         data: user
       }
