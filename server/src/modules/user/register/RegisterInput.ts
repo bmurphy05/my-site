@@ -2,7 +2,7 @@ import { Field, InputType } from "type-graphql";
 import { IsEmailAlreadyExist } from "./isEmailAlreadyExist";
 
 @InputType()
-export class UserInput {
+export class RegisterInput {
   @Field()
   firstName: string;
 
