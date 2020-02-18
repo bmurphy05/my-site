@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
 import { gCall } from "../../test-utils/gCall";
@@ -29,9 +28,9 @@ mutation Social($data: SocialInput!) {
 describe("Social", () => {
   it("create social", async () => {
     const social = {
-      linkedIn: faker.date.linkedIn(),
-      github: faker.name.github(),
-      user: faker.name.user()
+      linkedIn: "linkedin.com/bmurphy05",
+      github: "github.com/bmurphy05",
+      user: 1
     };
 
     const response = await gCall({

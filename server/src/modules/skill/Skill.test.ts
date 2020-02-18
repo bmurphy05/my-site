@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
 import { gCall } from "../../test-utils/gCall";
@@ -29,10 +28,11 @@ mutation Skill($data: SkillInput!) {
 describe("Skill", () => {
   it("create skill", async () => {
     const skill = {
-      title: faker.name.title(),
-      type: faker.date.type(),
-      user: faker.name.user()
+      title: "C++",
+      type: "language",
+      user: 1
     };
+
 
     const response = await gCall({
       source: skillMutation,

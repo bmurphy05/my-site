@@ -8,9 +8,9 @@ export class SkillInput {
   title: string;
 
   @Field()
-  user: number;
+  type: string;
 
   @Field()
-  type: string;
+  user: number;
 
 }

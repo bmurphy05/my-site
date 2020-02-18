@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
 import { gCall } from "../../test-utils/gCall";
@@ -33,14 +32,15 @@ mutation Project($data: ProjectInput!) {
 describe("Project", () => {
   it("create project", async () => {
     const project = {
-      title: faker.name.title(),
-      startDate: faker.date.startDate(),
-      endDate: faker.date.endDate(),
-      description: faker.name.description(),
-      link: faker.date.link(),
-      github: faker.date.github(),
-      user: faker.name.user()
+      title: "Manager",
+      startDate: "03/2013",
+      endDate: "Present",
+      description: "mow lawns",
+      link: "project1.html",
+      github: "github.com/bmurphy05",
+      user: 1
     };
+
 
     const response = await gCall({
       source: projectMutation,

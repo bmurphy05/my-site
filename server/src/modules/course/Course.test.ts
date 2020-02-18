@@ -57,7 +57,7 @@ describe("Course", () => {
     expect(dbUser).toBeDefined();
     expect(dbUser!.title).toBe(course.title);
     expect(dbUser!.semester).toBe(course.semester);
-    expect(dbUser!.user).toBe(course.user);
     expect(dbUser!.year).toBe(course.year);
+    expect(dbUser!.user).toBe(course.user);
   });
 });

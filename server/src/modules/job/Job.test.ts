@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../test-utils/testConn";
 import { gCall } from "../../test-utils/gCall";
@@ -29,15 +28,16 @@ mutation Job($data: JobInput!) {
 }
 `;
 
+
 describe("Job", () => {
   it("create job", async () => {
     const job = {
-      title: faker.name.title(),
-      location: faker.name.location(),
-      startDate: faker.date.startDate(),
-      endDate: faker.date.endDate(),
-      responsibilities: faker.date.responsibilities(),
-      user: faker.name.user()
+      title: "Manager",
+      location: "Yonkers, NY",
+      startDate: "03/2013",
+      endDate: "Present",
+      responsibilities: "mow lawns",
+      user: 1
     };
 
     const response = await gCall({

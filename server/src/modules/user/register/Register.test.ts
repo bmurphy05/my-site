@@ -1,5 +1,4 @@
 import { Connection } from "typeorm";
-import faker from "faker";
 
 import { testConn } from "../../../test-utils/testConn";
 import { gCall } from "../../../test-utils/gCall";
@@ -34,16 +33,16 @@ mutation Register($data: RegisterInput!) {
 describe("Register", () => {
   it("create user", async () => {
     const user = {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      underGraduate: faker.internet.underGraduate(),
-      postGraduate: faker.internet.postGraduate(),
-      summary: faker.internet.summary(),
-      image: faker.internet.image()
-
+      password: "password",
+      firstName: "Brendan",
+      lastName: "Murphy",
+      email: "murphyb1197@gmail.com",
+      underGraduate: "Manhattan College",
+      postGraduate: "N/A",
+      summary: "recent grad",
+      image: "image.img"
     };
+
 
     const response = await gCall({
       source: registerMutation,

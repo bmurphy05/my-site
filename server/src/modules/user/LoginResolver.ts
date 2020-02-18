@@ -1,3 +1,4 @@
+  
 import { Resolver, Mutation, Arg, Ctx } from "type-graphql";
 import bcrypt from "bcryptjs";
 
@@ -21,6 +22,10 @@ export class LoginResolver {
     const valid = await bcrypt.compare(password, user.password);
 
     if (!valid) {
+      return null;
+    }
+
+    if (!user.confirmed) {
       return null;
     }
 
