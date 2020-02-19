@@ -11,6 +11,6 @@ export const testConn = (drop: boolean = false) => {
     database: "my-site-dev-test-example",
     synchronize: drop,
     dropSchema: drop,
-    entities: [__dirname + "/../entity/*.*"]
+    entities: ["src/entity/**/*.ts"]
   });
 };

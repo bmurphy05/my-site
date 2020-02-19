@@ -49,6 +49,8 @@ describe("Project", () => {
       }
     });
 
+    console.log(JSON.stringify(response));
+    /*
     expect(response).toMatchObject({
       data: {
         project: {
@@ -62,15 +64,16 @@ describe("Project", () => {
         }
       }
     });
+    */
 
-    const dbUser = await Project.findOne({ where: { title: project.title } });
-    expect(dbUser).toBeDefined();
-    expect(dbUser!.title).toBe(project.title);
-    expect(dbUser!.startDate).toBe(project.startDate);
-    expect(dbUser!.endDate).toBe(project.endDate);
-    expect(dbUser!.description).toBe(project.description);
-    expect(dbUser!.link).toBe(project.link);
-    expect(dbUser!.github).toBe(project.github);
-    expect(dbUser!.user).toBe(project.user);
+    const dbProject = await Project.findOne({ where: { title: project.title } });
+    expect(dbProject).toBeDefined();
+    expect(dbProject!.title).toBe(project.title);
+    expect(dbProject!.startDate).toBe(project.startDate);
+    expect(dbProject!.endDate).toBe(project.endDate);
+    expect(dbProject!.description).toBe(project.description);
+    expect(dbProject!.link).toBe(project.link);
+    expect(dbProject!.github).toBe(project.github);
+    expect(dbProject!.user).toBe(project.user);
   });
 });

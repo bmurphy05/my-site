@@ -13,11 +13,17 @@ afterAll(async () => {
 });
 
 const jobMutation = `
-mutation Job($data: JobInput!) {
-  job(
-    data: $data
-  ) {
-    id
+mutation addJob($title: String!, $location: String!, $startDate: String!, $endDate: String!, $responsibilities: String! $user: String!) {
+  addJob(input: {
+    id,
+    title: $title,
+    location: $location,
+    startDate: $startDate,
+    endDate: $endDate,
+    responsibilities: $responsibilities,
+    user: $user
+  })
+  {
     title
     location
     startDate
@@ -47,6 +53,8 @@ describe("Job", () => {
       }
     });
 
+    console.log(JSON.stringify(response));
+    /*
     expect(response).toMatchObject({
       data: {
         job: {
@@ -59,14 +67,15 @@ describe("Job", () => {
         }
       }
     });
+    */
 
-    const dbUser = await Job.findOne({ where: { title: job.title } });
-    expect(dbUser).toBeDefined();
-    expect(dbUser!.title).toBe(job.title);
-    expect(dbUser!.location).toBe(job.location);
-    expect(dbUser!.startDate).toBe(job.startDate);
-    expect(dbUser!.endDate).toBe(job.endDate);
-    expect(dbUser!.responsibilities).toBe(job.responsibilities);
-    expect(dbUser!.user).toBe(job.user);
+    const dbJob = await Job.findOne({ where: { title: job.title } });
+    expect(dbJob).toBeDefined();
+    expect(dbJob!.title).toBe(job.title);
+    expect(dbJob!.location).toBe(job.location);
+    expect(dbJob!.startDate).toBe(job.startDate);
+    expect(dbJob!.endDate).toBe(job.endDate);
+    expect(dbJob!.responsibilities).toBe(job.responsibilities);
+    expect(dbJob!.user).toBe(job.user);
   });
 });
