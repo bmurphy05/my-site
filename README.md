@@ -15,9 +15,9 @@ Create an app similar to LinkedIn for users to show their resume and open source
 To run:
 * Create a Postgres database named ‘my-site-dev’ in your local environment
 * To install dependencies:
-'''
+```
 $npm install
-'''
+```
 
 * Run the following command
 
