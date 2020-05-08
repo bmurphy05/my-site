@@ -5,12 +5,12 @@ export const testConn = (drop: boolean = false) => {
     name: "default",
     type: "postgres",
     host: "localhost",
-    port: 5433,
+    port: 5432,
     username: "postgres",
     password: "postgres",
-    database: "my-site-dev",
+    database: "my-site-dev-test-example",
     synchronize: drop,
     dropSchema: drop,
-    entities: [__dirname + "/../entity/*.*"]
+    entities: ["src/entity/**/*.ts"]
   });
 };

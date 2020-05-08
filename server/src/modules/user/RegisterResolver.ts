@@ -1,9 +1,9 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { User } from "../../entity/User";
-import { UserInput } from "./register/UserInput";
+import { RegisterInput } from "./register/RegisterInput";
 
 @Resolver()
-export class UserResolver {
+export class RegisterResolver {
   @Mutation(() => User)
   async addUser(@Arg("input")
   {
@@ -15,7 +15,7 @@ export class UserResolver {
     postGraduate, 
     summary, 
     image
-  }: UserInput
+  }: RegisterInput
   ) {
     return User.create({ 
       firstName, 

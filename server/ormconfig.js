@@ -1,13 +1,14 @@
 module.exports = [
   {
-    name: "development",
+    name: "default",
     type: "postgres",
     host: "localhost",
-    port: 5433,
+    port: 5432,
     username: "postgres",
     password: "postgres",
     database: "my-site-dev",
     synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
+    dropSchema: true,
     logging: true,
     entities: ["src/entity/**/*.ts"],
     migrations: ["src/migration/**/*.ts"],
@@ -23,7 +24,7 @@ module.exports = [
     type: "postgres",
     url: process.env.DATABASE_URL,
     synchronize: true, // switch this to false once you have the initial tables created and use migrations instead
-    logging: false,
+    logging: true,
     entities: ["dist/entity/**/*.ts"],
     migrations: ["dist/migration/**/*.ts"],
     subscribers: ["dist/subscriber/**/*.ts"],

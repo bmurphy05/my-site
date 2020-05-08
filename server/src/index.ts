@@ -1,35 +1,59 @@
-import "dotenv/config";
 import "reflect-metadata";
-import { createConnection, getConnectionOptions } from "typeorm";
-import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import { buildSchema } from "type-graphql";
-import { UserResolver } from "./modules/user/UserResolver";
-import { CourseResolver } from "./modules/course/CourseResolver";
-import { JobResolver } from "./modules/job/JobResolver";
-import { SkillResolver } from "./modules/skill/SkillResolver";
-import { SocialResolver } from "./modules/social/SocialResolver";
-import { ProjectResolver } from "./modules/project/ProjectResolver";
+import Express from "express";
+import { createConnection } from "typeorm";
+import session from "express-session";
+import connectRedis from "connect-redis";
+import cors from "cors";
+import { redis } from "./redis";
+import { createSchema } from "./utils/createSchema";
 
-(async () => {
-  const app = express();
 
-  const options = await getConnectionOptions(
-    process.env.NODE_ENV || "development"
-  );
-  await createConnection({ ...options, name: "default" });
+
+const main = async () => {
+  const port = 4000;
+  await createConnection();
+
+  const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
-    schema: await buildSchema({
-      resolvers: [CourseResolver, JobResolver, UserResolver, SkillResolver, SocialResolver, ProjectResolver],
-      validate: true
-    }),
-    context: ({ req, res }) => ({ req, res })
-  });
+      schema,
+      context: ({ req, res }: any) => ({ req, res })
+    });
+    
+  const app = Express();
 
-  apolloServer.applyMiddleware({ app, cors: false });
-  const port = process.env.PORT || 4000;
-  app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}/graphql`);
+  const RedisStore = connectRedis(session);
+
+  app.use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000"
+    })
+  );
+
+  app.use(
+    session({
+      store: new RedisStore({
+        client: redis as any
+      }),
+      name: "qid",
+      secret: "aslkdfjoiq12312",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
+      }
+    })
+  );
+
+  apolloServer.applyMiddleware({ app });
+
+  app.listen(4000, () => {
+    console.log(`server started on http://localhost:${port}/graphql`);
   });
-})();
+};
+
+main();
